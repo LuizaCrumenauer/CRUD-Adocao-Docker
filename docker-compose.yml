@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # Serviço 1: Aplicação Java (WildFly)
+  app:
+    build: . # Constrói a imagem a partir do Dockerfile na pasta atual
+    container_name: crud-java-app
+    ports:
+      - "8080:8080" # Expõe o serviço na porta 8080 do seu computador
+    volumes:
+      - ./logs:/opt/jboss/wildfly/standalone/log # Mapeia os logs para uma pasta 'logs' no seu SO
+    environment:
+      # Variáveis para o WildFly configurar o DataSource do PostgreSQL automaticamente
+      DB_VENDOR: POSTGRES
+      POSTGRES_SERVICE_HOST: db # O nome do serviço do banco de dados (ver abaixo)
+      POSTGRES_DATABASE: sistema-adocao-simples # Nome do banco a ser usado
+      POSTGRES_USER: postgres # Usuário do banco
+      POSTGRES_PASSWORD: 1234 # Senha do banco (❗ troque por uma mais forte)
+      POSTGRES_JNDI: java:/jboss/datasources/PostgresDS # Nome JNDI que usamos no persistence.xml
+    depends_on:
+      - db # Garante que o banco de dados inicie antes da aplicação
+    networks:
+      - app-network
+
+  # Serviço 2: Banco de Dados (PostgreSQL)
+  db:
+    image: postgres:16 # Usa a imagem oficial do PostgreSQL
+    container_name: crud-postgres-db
+    environment:
+      POSTGRES_DB: sistema-adocao-simples # Cria este banco de dados na inicialização
+      POSTGRES_USER: postgres # Cria este usuário
+      POSTGRES_PASSWORD: 1234 # Define esta senha para o usuário (❗ use a mesma de cima)
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Volume para persistir os dados do banco
+    networks:
+      - app-network
+    # Descomente a linha abaixo se quiser acessar o banco diretamente do seu PC (ex: com DBeaver)
+    # ports:
+    #   - "5432:5432"
+
+# Define o volume para persistência de dados do PostgreSQL
+volumes:
+  postgres-data:
+
+# Define a rede para comunicação entre os contêineres
+networks:
+  app-network:
+    driver: bridge
