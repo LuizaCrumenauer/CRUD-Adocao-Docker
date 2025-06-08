@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Clona o seu repositório do GitHub
 # ❗ ATENÇÃO: Substitua pela URL correta do seu repositório!
-RUN git clone https://github.com/LuizaCrumenauer/CRUD-Java-Adocao.git .
+RUN git clone https://github.com/LuizaCrumenauer/CRUD-Adocao-Docker.git .
 
 # Executa o build com Maven para gerar o arquivo .war
 # A flag -DskipTests pula a execução de testes para agilizar o build
