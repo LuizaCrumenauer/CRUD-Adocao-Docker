@@ -10,13 +10,10 @@ services:
     volumes:
       - ./logs:/opt/jboss/wildfly/standalone/log # Mapeia os logs para uma pasta 'logs' no seu SO
     environment:
-      # Variáveis para o WildFly configurar o DataSource do PostgreSQL automaticamente
-      DB_VENDOR: POSTGRES
-      POSTGRES_SERVICE_HOST: db # O nome do serviço do banco de dados (ver abaixo)
-      POSTGRES_DATABASE: sistema-adocao-simples # Nome do banco a ser usado
-      POSTGRES_USER: postgres # Usuário do banco
-      POSTGRES_PASSWORD: 1234 # Senha do banco (❗ troque por uma mais forte)
-      POSTGRES_JNDI: java:/jboss/datasources/PostgresDS # Nome JNDI que usamos no persistence.xml
+      DB_HOST: db
+      DB_NAME: sistema-adocao-simples
+      DB_USER: postgres
+      DB_PASS: 1234
     depends_on:
       - db # Garante que o banco de dados inicie antes da aplicação
     networks:
@@ -32,6 +29,7 @@ services:
       POSTGRES_PASSWORD: 1234 # Define esta senha para o usuário (❗ use a mesma de cima)
     volumes:
       - postgres-data:/var/lib/postgresql/data # Volume para persistir os dados do banco
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
     # Descomente a linha abaixo se quiser acessar o banco diretamente do seu PC (ex: com DBeaver)
