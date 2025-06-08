@@ -19,7 +19,7 @@ RUN mvn clean package -DskipTests
 # ESTÁGIO 2: Ambiente de Execução com WildFly
 # =================================================================
 # Usamos a imagem oficial do WildFly 36 com JDK 21
-FROM jboss/wildfly:36.0.1.Final-jdk21
+FROM quay.io/wildfly/wildfly:36.0.1.Final-jdk21
 
 # Copia o arquivo .war gerado no estágio anterior para a pasta de deployments do WildFly
 # ❗ ATENÇÃO: O nome do arquivo .war deve ser o mesmo gerado na pasta 'target' do seu projeto.
