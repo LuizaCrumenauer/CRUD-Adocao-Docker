@@ -1,0 +1,799 @@
+/* ==========================================================================
+   1. Reset Básico e Estilos Globais
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F4EEED; /* Branco rosado / Off-white rosado da paleta */
+    color: #4A4A4A; /* Cinza escuro para texto principal, melhor contraste */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. Estrutura Principal do Layout (Wrapper, Header, Nav, Container, Footer)
+   ========================================================================== */
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #A5A68F; /* Verde Sálvia / Oliva claro da paleta */
+    color: #FFFFFF; /* Branco para texto do cabeçalho, para máximo contraste */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+header .logo-subtitle {
+    font-size: 1.0em;
+    margin-top: 5px;
+    color: #E9E4D5; /* Bege muito claro levemente escurecido para subtítulo */
+}
+
+nav {
+    background-color: #D9B2A9; /* Rosa antigo / Nude rosado da paleta */
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav a {
+    color: #3a3c35; /* Texto escuro para links da navegação */
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    background-color: #8C8D77; /* Tom mais escuro do Verde Sálvia para hover/active */
+    text-decoration: none;
+    color: #FFFFFF; /* Texto branco no hover/active */
+}
+
+.container {
+    width: 90%;
+    /*max-width: 1200px;*/
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #fff; /* Branco puro para o container principal */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    flex: 1; /* Para ocupar o espaço disponível */
+}
+
+footer {
+    background-color: #A5A68F; /* Verde Sálvia / Oliva claro */
+    color: #FFFFFF; /* Branco para texto do rodapé, para máximo contraste */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Empurra o rodapé para baixo */
+    font-size: 0.9em;
+}
+
+/* ==========================================================================
+   3. Estilos de Títulos de Página
+   ========================================================================== */
+.page-title {
+    color: #5E6053; /* Tom mais escuro do Verde Sálvia para títulos de página */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* ==========================================================================
+   4. Componentes Específicos de Página
+   ========================================================================== */
+
+/* 4.1 Grid de Pets (para index.jsp) */
+.pet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+.pet-card {
+    border: 1px solid #F2DBD5; /* Rosa muito claro / Pêssego pálido para borda suave */
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.pet-card h3 {
+    margin-top: 0;
+    color: #717361; /* Tom mais escuro do Verde Sálvia para nomes dos pets */
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.pet-card p {
+    font-size: 0.95em;
+    color: #3a3c35; /* Cinza escuro para texto do card */
+    margin-bottom: 8px;
+    flex-grow: 1; /* Faz o parágrafo ocupar espaço, empurrando o botão para baixo */
+}
+
+.pet-card .adocao-button {
+    display: block; /* Ocupa a largura total */
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #D9B2A9; /* Rosa antigo / Nude rosado para botão de destaque */
+    color: #3a3c35; /* Texto escuro para texto do botão */
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.pet-card .adocao-button:hover {
+    background-color: #C7A097; /* Rosa antigo um pouco mais escuro para hover */
+}
+
+/* 4.2 Estilos para Formulários (paginaLogin.jsp, cadastroUsuario.jsp, alterarUsuario.jsp, etc.) */
+.form-container-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Aumentado para consistência, pode ser ajustado por .cadastro */
+    text-align: center;
+}
+
+.form-container.cadastro { /* Classe específica para formulário de cadastro maior */
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-container h2 { /* Título dentro do formulário */
+    color: #5E6053; /* Tom mais escuro do Verde Sálvia */
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative; /* Adicionado para posicionar a seta customizada do select */
+}
+
+/* Estilo para Checkbox */
+.form-group-checkbox {
+    display: flex;
+    align-items: center; /* Alinha o checkbox e o label verticalmente */
+    margin-top: 10px; /* Espaço acima do grupo de checkbox */
+}
+.form-container input[type="checkbox"] {
+    width: auto; /* Reseta a largura padrão para checkbox */
+    margin-right: 8px;
+    appearance: auto; /* Permite que o navegador renderize o checkbox padrão */
+    /* Estilos customizados para checkbox podem ser complexos e variar entre navegadores */
+    /* Para uma aparência mais customizada, seriam necessárias técnicas mais avançadas */
+    position: relative;
+    top: -2px; /* Pequeno ajuste vertical */
+}
+.form-container .checkbox-label {
+    font-weight: normal; /* Label do checkbox menos destacado que labels de input */
+    color: #4A4A4A;
+    font-size: 1em;
+    margin-bottom: 0; /* Remove margem inferior do label do checkbox */
+    cursor: pointer; /* Indica que o label também é clicável */
+}
+
+.form-container.cadastro .form-group { /* Ajuste para cadastro */
+    margin-bottom: 18px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #707160; /* Tom médio do Verde Sálvia para labels */
+    font-weight: bold;
+    font-size: 0.95em;
+}
+.form-container.cadastro label { /* Ajuste para cadastro */
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="text"],
+.form-container input[type="tel"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #F2DBD5; /* Rosa muito claro / Pêssego pálido para borda suave */
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    color: #4A4A4A; /* Cinza escuro para texto dentro do input */
+    background-color: #fff; /* Garante fundo branco */
+    font-family: 'Arial', sans-serif; /* Consistência da fonte */
+    line-height: 1.5; /* Para textarea e select */
+
+    /* Remove a aparência padrão do navegador para select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+/* Ajuste específico para o select ter espaço para a seta customizada */
+.form-container select {
+    padding-right: 30px; /* Espaço para a seta */
+    background-image: none; /* Remove qualquer imagem de fundo padrão que possa aparecer com appearance:none */
+}
+
+
+.form-container.cadastro input[type="email"],
+.form-container.cadastro input[type="password"],
+.form-container.cadastro input[type="text"],
+.form-container.cadastro input[type="tel"],
+.form-container.cadastro select,
+.form-container.cadastro textarea { /* Ajuste para cadastro */
+    padding: 10px 12px;
+    font-size: 0.95em;
+}
+.form-container.cadastro select {
+    padding-right: 30px; /* Mantém espaço para seta no modo cadastro */
+}
+
+
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="text"]:focus,
+.form-container input[type="tel"]:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #D9B2A9; /* Rosa antigo / Nude rosado - no foco */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(217, 178, 169, 0.25); /* Adiciona um brilho sutil no foco */
+}
+
+/* Seta customizada para o select */
+.form-group select + ::after, /* Aplica se o select for o último elemento direto no form-group */
+.form-group > div > select + ::after { /* Se o select estiver dentro de uma div extra no form-group */
+    /* Esta regra pode precisar de ajuste dependendo da sua estrutura HTML exata se o select não for filho direto do .form-group */
+}
+
+/* Uma forma mais robusta de adicionar a seta é no .form-group que CONTÉM um select */
+.form-group:has(select)::after {
+    content: '▼'; /* Ou pode usar um SVG como background-image no select */
+    font-size: 12px;
+    color: #707160; /* Cor da seta */
+    position: absolute;
+    right: 15px;
+    top: calc(50% + 7px); /* Ajuste para alinhar verticalmente com o campo após o label */
+    transform: translateY(-50%);
+    pointer-events: none; /* Para que a seta não interfira no clique do select */
+    z-index: 1;
+}
+
+
+/* Botão Primário de Formulário (Ex: LOGAR, Cadastrar, Salvar) */
+.form-container input[type="submit"] {
+    background-color: #A5A68F; /* Verde Sálvia */
+    color: #FFFFFF; /* Branco */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px; /* Espaço abaixo do botão primário */
+}
+.form-container.cadastro input[type="submit"] { /* Se precisar de ajuste específico para cadastro */
+    margin-top: 10px;
+}
+.form-container input[type="submit"]:hover {
+    background-color: #8C8D77; /* Tom mais escuro do Verde Sálvia */
+}
+
+/* Botão Secundário de Formulário (Ex: Voltar, Cancelar) */
+.form-container .button.back-link-button {
+    background-color: #F2DBD5; /* Rosa muito claro / Pêssego pálido */
+    color: #8C8D77; /* Tom mais escuro do Verde Sálvia para texto */
+    padding: 12px 20px; /* Consistente com botão primário */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em; /* Consistente com botão primário */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px; /* Ajustado para ser similar ao submit */
+    margin-bottom: 0;
+}
+.form-container .button.back-link-button:hover {
+    background-color: #EAD4CE; /* Rosa muito claro um pouco mais escuro */
+    color: #707160; /* Tom médio do Verde Sálvia no hover */
+}
+
+/* Link de Texto em Formulários (Ex: Cadastre-se) */
+.form-link {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: #4A4A4A;
+}
+
+.form-link a {
+    color: #D9B2A9; /* Rosa antigo / Nude rosado */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px 0;
+}
+
+.form-link a:hover {
+    color: #C7A097; /* Rosa antigo mais escuro */
+    text-decoration: underline;
+}
+
+/* Estilos para notas e separadores em formulários */
+.form-note {
+    font-size: 0.9em;
+    color: #707160; /* Tom médio do Verde Sálvia */
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-separator {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #E0E0E0; /* Cinza claro */
+}
+
+.form-section-title { /* Título para seções de formulário dentro de uma página maior */
+    color: #707160; /* Tom médio do Verde Sálvia */
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EAD4CE; /* Rosa claro um pouco mais escuro */
+    text-align: left;
+}
+
+.form-grid-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cria colunas responsivas */
+    gap: 20px; /* Espaço entre os campos do formulário */
+}
+
+/* Ajuste para o .form-group dentro do .form-grid-columns não ter margem inferior extra */
+.form-grid-columns .form-group {
+    margin-bottom: 0;
+}
+
+/* 4.3 Estilos para Dashboard do Usuário */
+.dashboard-content {
+    text-align: center;
+}
+
+.dashboard-welcome-text {
+    font-size: 1.4em;
+    color: #5E6053;
+    margin-bottom: 30px;
+}
+
+.dashboard-welcome-text strong {
+    color: #A5A68F;
+    font-weight: bold;
+}
+
+.dashboard-actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.dashboard-actions .action-button {
+    padding: 12px 25px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 220px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+    text-align: center;
+}
+
+.dashboard-actions .action-button.primary,
+.page-navigation-links .action-button.primary {
+    background-color: #F2DBD5;
+    color: #8C8D77;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.dashboard-actions .action-button.primary:hover,
+.page-navigation-links .action-button.primary:hover {
+    background-color: #C7A097;
+    transform: translateY(-2px);
+}
+
+.dashboard-actions .action-button.secondary,
+.page-navigation-links .action-button.secondary {
+    background-color: #A5A68F;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.dashboard-actions .action-button.secondary:hover,
+.page-navigation-links .action-button.secondary:hover {
+    background-color: #8C8D77;
+    transform: translateY(-2px);
+}
+
+/* 4.4 Estilos para Tabelas de Dados (Ex: Minhas Adoções, Gerenciar Usuários) */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #E0E0E0;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.data-table th {
+    background-color: #F5F5F5;
+    color: #5E6053;
+    font-weight: bold;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
+.data-table tr:hover {
+    background-color: #F0F8FF;
+}
+
+.table-actions {
+    text-align: center;
+}
+
+.table-action-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.table-action-button.edit {
+    background-color: #A5A68F; /* Verde Sálvia */
+}
+.table-action-button.edit:hover {
+    background-color: #8C8D77; /* Verde Sálvia mais escuro */
+    transform: translateY(-1px);
+}
+.table-action-button.delete { /* Adicionado estilo para botão de excluir em tabelas */
+    background-color: #e74c3c; /* Vermelho (consistente com logout antigo) */
+}
+.table-action-button.delete:hover {
+    background-color: #c0392b; /* Vermelho mais escuro */
+    transform: translateY(-1px);
+}
+
+.empty-data-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #707160;
+    padding: 30px 0;
+}
+
+/* 4.5 Links de Navegação no final da página (Ex: Minhas Adoções) */
+.page-navigation-links {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* 4.6 Estilos para Detalhes do Pet (Página Editar Adoção) */
+.pet-details-info {
+    background-color: #FAF4E3;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    border: 1px solid #EDE4D0;
+}
+
+.pet-details-header {
+    font-size: 1.2em;
+    color: #707160;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #D9B2A9;
+}
+
+.pet-details-info p {
+    font-size: 1em;
+    color: #5E6053;
+    margin-bottom: 5px;
+}
+
+.pet-details-info p strong {
+    color: #A5A68F;
+}
+
+.form-containerEdicao{ /* Mantido se usado especificamente em editarAdocao.jsp */
+    padding-bottom: 10px
+}
+.form-containerEdicao label{ /* Pode ser mesclado com .form-container label se o estilo for idêntico */
+    font-size: 1.2em;
+    color: #707160;
+}
+
+.form-containerEdicao textarea { /* Pode ser mesclado com .form-container textarea se o estilo for idêntico */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #F2DBD5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    color: #4A4A4A;
+    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-containerEdicao textarea:focus {
+    border-color: #D9B2A9;
+    outline: none;
+}
+.form-text-muted { /* Para o texto de ajuda abaixo do textarea */
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: #707160;
+}
+
+/* 4.7 Estilos para Admin Dashboard (adicionado na resposta anterior) */
+.admin-management-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.management-section-item {
+    background-color: #FAF4E3;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #EDE4D0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.management-section-item h3 {
+    color: #707160;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D9B2A9;
+}
+
+.admin-link-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.admin-link-list li {
+    margin-bottom: 10px;
+}
+
+.admin-link-list li a {
+    text-decoration: none;
+    color: #A5A68F;
+    font-size: 1.1em;
+    padding: 5px 0;
+    display: block;
+    transition: color 0.2s ease-in-out, padding-left 0.2s ease-in-out;
+    border-radius: 4px;
+}
+
+.admin-link-list li a:hover {
+    color: #8C8D77;
+    padding-left: 8px;
+    background-color: #f8f8f0;
+}
+
+hr.separator, /* Estilo para <hr> geral, se usado como separador visual */
+hr.form-separator { /* Estilo específico para <hr> em formulários */
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #E0E0E0; /* Cinza claro */
+}
+
+
+/* ==========================================================================
+   5. Componentes Comuns (Mensagens)
+   ========================================================================== */
+.message-container,
+.mensagem-global {
+    text-align: center;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: bold;
+    border: 1px solid transparent;
+    width: 100%;
+}
+.mensagem-global {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.message-container.info,
+.mensagem-global.info {
+    background-color: #FAF4E3;
+    color: #5E6053;
+    border-color: #EDE4D0;
+}
+
+.message-container.success,
+.mensagem-global.success {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border-color: #c8e6c9;
+}
+
+.message-container.error,
+.mensagem-global.error {
+    color: #b71c1c;
+    background-color: #ffcdd2;
+    border-color: #ef9a9a;
+}
+
+/* ==========================================================================
+   6. Media Queries (Responsividade)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .dashboard-actions,
+    .page-navigation-links {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .data-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #707160;
+    }
+}
+
+@media (max-width: 767px) {
+    .data-table thead {
+        display: none;
+    }
+    .data-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .data-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #F0F0F0;
+    }
+    .data-table td:last-child {
+        border-bottom: none;
+    }
+    .data-table td[data-label]::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        padding-right: 10px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        color: #707160;
+    }
+    .table-actions {
+        text-align: right;
+        padding-left: 10px !important;
+    }
+    .table-actions::before {
+        content: "" !important;
+        display: none !important;
+    }
+}
+

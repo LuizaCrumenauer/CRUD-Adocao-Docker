@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Aplicação Java (WildFly)
+  app:
+    build: .
+    container_name: crud-java-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/opt/jboss/wildfly/standalone/log
+    environment:
+      DB_HOST: db
+      DB_NAME: sistema-adocao-simples
+      DB_USER: postgres
+      DB_PASS: 1234
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  #  Banco de Dados (PostgreSQL)
+  db:
+    image: postgres:16
+    container_name: crud-postgres-db
+    environment:
+      POSTGRES_DB: sistema-adocao-simples
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Volume para persistir os dados do banco
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge
